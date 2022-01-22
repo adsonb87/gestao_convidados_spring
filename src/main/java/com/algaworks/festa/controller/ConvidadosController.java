@@ -11,13 +11,19 @@ import com.algaworks.festa.model.Convidado;
 import com.algaworks.festa.model.Convidados;
 
 @Controller
-@RequestMapping("/convidados")
 public class ConvidadosController {
 	
 	@Autowired
 	private Convidados convidados;
 	
-	@GetMapping
+	
+	@RequestMapping("/")
+	public String index() {
+		return "index";
+	}
+	
+	
+	@GetMapping("/convidados")
 	public ModelAndView listar() {
 		ModelAndView modelAndView = new ModelAndView("ListaConvidados");
 		
@@ -27,7 +33,7 @@ public class ConvidadosController {
 		return modelAndView;
 	}
 	
-	@PostMapping
+	@PostMapping("/convidados")
 	public String salvar(Convidado convidado) {
 		this.convidados.save(convidado);
 		return "redirect:/convidados";
