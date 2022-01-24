@@ -23,9 +23,9 @@ public class InMemorySecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
-		.antMatchers("/","/convidados").hasRole("ADMIN")
+		.antMatchers("/","/convidados").permitAll()
 		.anyRequest().authenticated().and().formLogin().permitAll()
-		.and()
+		.and()	
 		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.logoutSuccessUrl("/login").permitAll()
 		.and()
